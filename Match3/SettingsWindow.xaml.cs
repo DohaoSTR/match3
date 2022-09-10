@@ -10,7 +10,7 @@ namespace Match3
     /// </summary>
     public partial class SettingsWindow : UserControl
     {
-        private Settings _standartSettings;
+        private readonly Settings _standartSettings;
 
         public SettingsWindow()
         {
@@ -52,4 +52,3 @@ namespace Match3
         }
     }
 }
-

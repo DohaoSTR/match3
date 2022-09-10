@@ -9,7 +9,7 @@ namespace Match3
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Settings _standartSettings;
+        private readonly Settings _standartSettings;
 
         public MainWindow()
         {

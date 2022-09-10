@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Match-3" Height="550" Width="450" ResizeMode="NoResize">
     <Window.Background>
-        <ImageBrush ImageSource="Resources\1579377528_45-94.jpg"/>
+        <ImageBrush ImageSource="Resources\MainMenuPicture.jpg"/>
     </Window.Background>
     <Grid>
         

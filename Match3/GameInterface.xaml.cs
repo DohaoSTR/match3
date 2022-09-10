@@ -25,8 +25,8 @@ namespace Match3
 
         private void RegisterTile(Tile tile)
         {
-            tile.Shape.Height = GameCanvas.Height / _settings.CurrentBoardSize.ColumnsCount;
-            tile.Shape.Width = GameCanvas.Width / _settings.CurrentBoardSize.RowsCount;
+            tile.Shape.Height = GameCanvas.Height / _settings.BoardSize.ColumnCount;
+            tile.Shape.Width = GameCanvas.Width / _settings.BoardSize.RowCount;
             tile.Shape.RenderTransform =
                 new ScaleTransform(1.0, 1.0, tile.Shape.Height / 2, tile.Shape.Width / 2);
             GameCanvas.Children.Add(tile.Shape);
@@ -39,7 +39,7 @@ namespace Match3
         private void DropAnimation(Tile tile)
         {
             _dropAnimationRegister++;
-            var animTop = new DoubleAnimation
+            DoubleAnimation animTop = new DoubleAnimation
             {
                 To = tile.Top * tile.Shape.Height,
                 Duration = TimeSpan.FromMilliseconds(200),
@@ -48,11 +48,16 @@ namespace Match3
             {
                 _dropAnimationRegister--;
                 if (_dropAnimationRegister != 0)
+                {
                     return;
+                }
+
                 _game.FillBoard(RegisterTile);
                 _game.RemoveMatches(DeleteAnimation);
                 if (_isFirstStartSelection)
-                    _game.Points = 0;
+                {
+                    _game.PointsCount = 0;
+                }
             };
             tile.Shape.BeginAnimation(Canvas.TopProperty, animTop);
         }
@@ -61,7 +66,7 @@ namespace Match3
 
         private void StartSelectionAnimation(Tile tile)
         {
-            var anim = new DoubleAnimation
+            DoubleAnimation anim = new DoubleAnimation
             {
                 From = 1.0,
                 To = 0.8,
@@ -89,7 +94,7 @@ namespace Match3
         private void DeleteAnimation(Tile tile)
         {
             _deleteAnimationRegister += 2;
-            var anim = new DoubleAnimation
+            DoubleAnimation anim = new DoubleAnimation
             {
                 From = 1.0,
                 To = 0.0,
@@ -129,13 +134,13 @@ namespace Match3
 
         private void AnimateSwap(Tile first, Tile second, Action<object, EventArgs> onCompleted)
         {
-            var dt = Math.Sign(Math.Abs(first.Top - second.Top));
-            var dl = Math.Sign(Math.Abs(first.Left - second.Left));
-            var animFirst = new DoubleAnimation
+            int dt = Math.Sign(Math.Abs(first.Top - second.Top));
+            int dl = Math.Sign(Math.Abs(first.Left - second.Left));
+            DoubleAnimation animFirst = new DoubleAnimation
             {
                 Duration = TimeSpan.FromMilliseconds(200),
             };
-            var animSecond = new DoubleAnimation
+            DoubleAnimation animSecond = new DoubleAnimation
             {
                 Duration = TimeSpan.FromMilliseconds(200),
             };
@@ -171,7 +176,11 @@ namespace Match3
                 first, second, (o1, e1) =>
                 {
                     _failAnimationRegister--;
-                    if (_failAnimationRegister != 0) return;
+                    if (_failAnimationRegister != 0)
+                    {
+                        return;
+                    }
+
                     first.SwapCoordinates(ref second);
                     _failAnimationRegister += 2;
                     AnimateSwap(
@@ -194,8 +203,12 @@ namespace Match3
                 return;
             }
 
-            if (!(e.OriginalSource is TileShape ts)) return;
-            var t = (Tile)ts.Tag;
+            if (!(e.OriginalSource is TileShape ts))
+            {
+                return;
+            }
+
+            Tile t = (Tile)ts.Tag;
             if (t.Selected)
             {
                 t.Selected = false;
@@ -206,7 +219,7 @@ namespace Match3
             {
                 if (_selected != null)
                 {
-                    var tempTile = _selected;
+                    Tile tempTile = _selected;
                     _selected.Selected = false;
                     StopSelectionAnimation(_selected);
                     _selected = null;

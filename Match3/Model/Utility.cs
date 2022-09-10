@@ -2,11 +2,11 @@
 {
     public static class Utility
     {
-        public static void Swap<T>(ref T l, ref T r)
+        public static void SwapTiles<T>(ref T left, ref T right)
         {
-            T temp = l;
-            l = r;
-            r = temp;
+            T temporaryTile = left;
+            left = right;
+            right = temporaryTile;
         }
     }
 }

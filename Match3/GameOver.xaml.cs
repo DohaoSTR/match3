@@ -9,7 +9,7 @@ namespace Match3
     /// </summary>
     public partial class GameOver : UserControl
     {
-        private Settings _standartSettings;
+        private readonly Settings _standartSettings;
         public int Points { get; }
 
         public GameOver(int points)

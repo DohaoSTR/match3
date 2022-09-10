@@ -73,6 +73,7 @@
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\BoardSize.cs" />
     <Compile Include="Model\Game.cs" />
     <Compile Include="Model\Settings.cs" />
     <Compile Include="Model\Switcher.cs" />
@@ -132,7 +133,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\1579377528_45-94.jpg" />
+    <Resource Include="Resources\MainMenuPicture.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

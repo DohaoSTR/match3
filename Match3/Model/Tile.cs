@@ -30,6 +30,7 @@ namespace Match3.Model
             Top = top;
             Left = left;
             Color = color;
+
             Shape = new TileShape
             {
                 Fill = new SolidColorBrush(color),
@@ -41,8 +42,8 @@ namespace Match3.Model
 
         public void SwapCoordinates(ref Tile other)
         {
-            Utility.Swap(ref _top, ref other._top);
-            Utility.Swap(ref _left, ref other._left);
+            Utility.SwapTiles(ref _top, ref other._top);
+            Utility.SwapTiles(ref _left, ref other._left);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Match3
     /// </summary>
     public partial class MainMenu : UserControl
     {
-        private Settings _settings;
+        private readonly Settings _settings;
 
         public MainMenu(Settings settings)
         {
